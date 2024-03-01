@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reset Password</title>
+</head>
+<body>
+  <h1>Reset Password</h1>
+  <form id="resetForm" method="PUT"> 
+    <label for="password">New Password:</label>
+    <input type="password" id="password" name="password" required><br><br>
+    <label for="confirmPassword">Confirm Password:</label>
+    <input type="password" id="confirmPassword" name="confirmPassword" required><br><br>
+    <button type="submit">Reset Password</button>
+    <p>Don't have an account? <a href="/index.html">Login</a></p>
+  </form>
+
+  <script>
+    // Function to extract token from URL
+    function getTokenFromURL() {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get('token');
+    }
+
+    // Set the action attribute of the form with the token
+    document.getElementById('resetForm').action = `/api/v1/password/reset/${getTokenFromURL()}`;
+  </script>
+</body>
+</html>
